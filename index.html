@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>സാമ്പത്തിക ശാസ്ത്രം - സെറ്റ് 1 | മോഡൽ എക്സാം</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body { font-family: 'Noto Sans Malayalam', 'Manrope', sans-serif; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    @keyframes popZoom {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop { animation: popZoom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between select-none">
+
+  <!-- Header -->
+  <header class="bg-slate-800/95 backdrop-blur border-b border-slate-700 px-4 sm:px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-lg shadow-lg text-slate-950">
+        PSC
+      </div>
+      <div>
+        <h1 class="font-bold text-sm sm:text-base text-cyan-400 leading-tight">സാമ്പത്തിക ശാസ്ത്രം - സെറ്റ് 1</h1>
+        <p class="text-[11px] text-slate-400">Plus One SCERT Economics | 25 ചോദ്യങ്ങൾ (25 മിനിറ്റ്)</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-3">
+      <button id="fullscreenToggleBtn" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold rounded-lg border border-slate-600 transition flex items-center space-x-1">
+        <span>⛶ Fullscreen</span>
+      </button>
+      <div class="text-right">
+        <span id="displayUser" class="text-xs sm:text-sm font-semibold text-cyan-300">പഠിതാവ്</span>
+        <p class="text-[10px] text-emerald-400 font-mono">+1.00 / -0.33 Mark</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col items-center justify-center p-3 sm:p-6 w-full max-w-4xl mx-auto">
+    
+    <!-- Step 1: Motivation & Start Screen -->
+    <div id="motivationScreen" class="w-full max-w-lg bg-slate-800 border-2 border-cyan-500/60 rounded-3xl p-8 sm:p-10 shadow-2xl text-center space-y-6 animate-pop">
+      <div class="w-20 h-20 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-xl animate-bounce">
+        📈
+      </div>
+      <div>
+        <h2 id="motivateName" class="text-2xl sm:text-3xl font-black text-white">ഹലോ! ✨</h2>
+        <p class="text-cyan-400 font-extrabold text-xs sm:text-sm mt-1 uppercase tracking-widest">സാമ്പത്തിക ശാസ്ത്രം പരീക്ഷയിലേക്ക് സ്വാഗതം!</p>
+      </div>
+
+      <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 text-slate-200 text-xs sm:text-sm leading-relaxed space-y-2 shadow-inner">
+        <p class="font-bold text-cyan-400 text-sm">"ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥയുടെ ചരിത്രവും സ്റ്റാറ്റിസ്റ്റിക്സ് തത്വങ്ങളും കൃത്യതയോടെ പഠിക്കുക."</p>
+        <p class="text-slate-300">കുറഞ്ഞത് <strong class="text-emerald-400">7 മാർക്ക്</strong> നേടിയാൽ മാത്രമേ ഔദ്യോഗിക നോട്ട്സ് PDF ഡൗൺലോഡ് ചെയ്യാൻ സാധിക്കൂ! ആത്മവിശ്വാസത്തോടെ പരീക്ഷ ആരംഭിക്കുക.</p>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="button" onclick="startExamDirectly()" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-slate-950 font-black rounded-2xl transition transform active:scale-95 shadow-xl text-base flex items-center justify-center space-x-2 cursor-pointer">
+          <span>പരീക്ഷ ആരംഭിക്കുക</span>
+          <span>🚀</span>
+        </button>
+        <button type="button" onclick="fetchLiveLeaderboard()" class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-cyan-300 font-bold rounded-xl text-xs transition">
+          📊 ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Quiz Question Screen -->
+    <div id="quizScreen" class="w-full hidden flex-col space-y-4">
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-3 sm:p-4 flex flex-wrap items-center justify-between gap-3 shadow-md">
+        <div class="flex items-center space-x-2">
+          <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 font-bold rounded-lg text-xs sm:text-sm" id="questionBadge">ചോദ്യം 1 / 25</span>
+          <span class="text-[11px] text-slate-400" id="answeredCountTxt">പൂർത്തിയാക്കിയത്: 0/25</span>
+        </div>
+
+        <!-- Font Size Controls -->
+        <div class="flex items-center space-x-1 bg-slate-900 px-2 py-1 rounded-xl border border-slate-700 text-xs">
+          <span class="text-slate-400 text-[10px] mr-1">Font:</span>
+          <button id="fontDecrease" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded text-xs">A-</button>
+          <button id="fontReset" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs">Norm</button>
+          <button id="fontIncrease" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded text-xs">A+</button>
+        </div>
+
+        <div class="flex items-center space-x-2 bg-slate-900/90 border border-slate-700 px-3.5 py-1 rounded-xl shadow-inner">
+          <svg class="w-4 h-4 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span class="text-xs font-semibold text-slate-400">സമയം:</span>
+          <span id="examTimer" class="font-mono text-sm font-black text-cyan-400">25:00</span>
+        </div>
+
+        <button id="finishMidBtn" class="px-3 py-1 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-semibold rounded-lg transition">
+          ഫിനിഷ് ചെയ്യുക
+        </button>
+      </div>
+
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 sm:p-8 shadow-2xl relative">
+        <div class="flex justify-end mb-2">
+          <button id="reportQuestionBtn" class="px-2.5 py-1 bg-rose-950/70 hover:bg-rose-900 border border-rose-600/60 rounded-lg text-[11px] font-bold text-rose-300 flex items-center space-x-1 transition shadow-sm">
+            <svg class="w-3.5 h-3.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <span>Report Question</span>
+          </button>
+        </div>
+
+        <div class="mb-5">
+          <h2 id="qText" class="font-semibold leading-relaxed text-slate-100 whitespace-pre-line transition-all duration-200"></h2>
+        </div>
+
+        <div id="optionsContainer" class="space-y-2.5 mb-6"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-700">
+          <button id="prevBtn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs sm:text-sm font-semibold rounded-xl transition disabled:opacity-40">‹ Previous</button>
+          <div class="flex items-center space-x-2">
+            <button id="skipBtn" class="px-3.5 py-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm rounded-xl border border-slate-600 transition">Skip</button>
+            <button id="nextBtn" class="px-5 py-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition transform active:scale-95 shadow-md">Next ›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3">
+        <p class="text-[11px] font-semibold text-slate-400 mb-2">ചോദ്യങ്ങളിലേക്ക് നേരിട്ട് പോകാൻ ക്ലിക്ക് ചെയ്യുക:</p>
+        <div id="paletteContainer" class="flex flex-wrap gap-1.5 max-h-20 overflow-y-auto custom-scroll pr-1"></div>
+      </div>
+    </div>
+
+    <!-- Step 3: Result Screen & Interactive Reviews -->
+    <div id="resultScreen" class="w-full hidden space-y-6">
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl text-center space-y-5">
+        
+        <div class="flex justify-end">
+          <button type="button" onclick="returnToHomeWithData()" class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black rounded-xl text-xs transition shadow flex items-center space-x-1.5">
+            <span>🏠</span>
+            <span>ഹോം പേജിലേക്ക് മടങ്ങുക (Save Result)</span>
+          </button>
+        </div>
+
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black text-cyan-400 mb-1">പരീക്ഷാ ഫലം (Exam Result)</h2>
+          <p class="text-sm text-slate-400 mb-1" id="resultCandidateInfo"></p>
+          <span class="inline-block text-[11px] text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">
+            ✓ ഫലം പ്രൊഫൈൽ ഹിസ്റ്ററിയിൽ രേഖപ്പെടുത്തിയിട്ടുണ്ട്
+          </span>
+        </div>
+
+        <!-- Dynamic Motivation Badge -->
+        <div id="scoreMotivationBadge" class="max-w-xl mx-auto p-4 rounded-2xl border text-sm leading-relaxed transition shadow-inner"></div>
+
+        <!-- Clickable Score Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
+          <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700">
+            <span class="text-[11px] text-slate-400 block font-semibold uppercase">നെറ്റ് സ്കോർ</span>
+            <span id="finalScore" class="text-2xl sm:text-3xl font-black text-cyan-400 font-mono">0.00</span>
+            <span class="text-[10px] text-slate-500 block">25 ൽ</span>
+          </div>
+
+          <div id="filterCorrectCard" class="bg-slate-900/80 p-3.5 rounded-xl border border-emerald-800/80 hover:bg-emerald-950/40 cursor-pointer transition shadow hover:border-emerald-500 group" title="ശരിയായ ചോദ്യങ്ങൾ കാണാൻ ക്ലിക്ക് ചെയ്യുക">
+            <span class="text-[11px] text-emerald-400 block font-semibold uppercase group-hover:underline">ശരി (+1) 👆</span>
+            <span id="correctCount" class="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">0</span>
+            <span class="text-[10px] text-emerald-400/60 block">കാണാൻ ക്ലിക്ക് ചെയ്യുക</span>
+          </div>
+
+          <div id="filterWrongCard" class="bg-slate-900/80 p-3.5 rounded-xl border border-rose-800/80 hover:bg-rose-950/40 cursor-pointer transition shadow hover:border-rose-500 group" title="തെറ്റിയ ചോദ്യങ്ങൾ കാണാൻ ക്ലിക്ക് ചെയ്യുക">
+            <span class="text-[11px] text-rose-400 block font-semibold uppercase group-hover:underline">തെറ്റ് (-0.33) 👆</span>
+            <span id="wrongCount" class="text-xl sm:text-2xl font-bold text-rose-400 font-mono">0</span>
+            <span class="text-[10px] text-rose-400/60 block">കാണാൻ ക്ലിക്ക് ചെയ്യുക</span>
+          </div>
+
+          <div id="filterSkippedCard" class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-600/80 hover:bg-slate-700/40 cursor-pointer transition shadow hover:border-slate-400 group" title="സ്കിപ്പ് ചെയ്ത ചോദ്യങ്ങൾ കാണാൻ ക്ലിക്ക് ചെയ്യുക">
+            <span class="text-[11px] text-slate-300 block font-semibold uppercase group-hover:underline">Skip ചെയ്തവ 👆</span>
+            <span id="skipCount" class="text-xl sm:text-2xl font-bold text-slate-300 font-mono">0</span>
+            <span class="text-[10px] text-slate-400 block">കാണാൻ ക്ലിക്ക് ചെയ്യുക</span>
+          </div>
+        </div>
+
+        <div id="sheetStatus" class="text-xs text-cyan-400 animate-pulse">സ്കോർ ഗൂഗിൾ ഷീറ്റിലേക്ക് രേഖപ്പെടുത്തുന്നു...</div>
+
+        <!-- 7 Mark Cut-off Warning Box -->
+        <div id="pdfLockNotice" class="hidden max-w-md mx-auto p-3.5 bg-rose-950/40 border border-rose-800/80 rounded-xl text-xs text-rose-300">
+          ⚠️ <strong>ശ്രദ്ധിക്കുക:</strong> ഔദ്യോഗിക നോട്ടുകൾ PDF ഡൗൺലോഡ് ചെയ്യാൻ കുറഞ്ഞത് <strong>7 മാർക്ക്</strong> നേടിയിരിക്കണം. നിങ്ങളുടെ നിലവിലെ സ്കോർ 7-ൽ താഴെയാണ്.
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <button type="button" id="downloadOriginalNoteBtn" onclick="openFeedbackModal()" class="hidden px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-slate-950 font-black rounded-xl text-sm transition shadow-lg flex items-center space-x-2 cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
+            <span>ഔദ്യോഗിക നോട്ടുകൾ PDF ഡൗൺലോഡ് ചെയ്യുക 📥</span>
+          </button>
+
+          <button type="button" id="downloadPdfBtn" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition shadow-lg flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>സ്കോർകാർഡ് PDF</span>
+          </button>
+
+          <button type="button" onclick="fetchLiveLeaderboard()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition shadow-lg">
+            📊 ലൈവ് റാങ്ക് ലിസ്റ്റ് കാണുക
+          </button>
+
+          <button type="button" onclick="returnToHomeWithData()" class="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl text-sm transition flex items-center space-x-1.5">
+            <span>🏠</span>
+            <span>ഹോം പോർട്ടൽ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtered Question Review Area -->
+      <div id="filterReviewArea" class="hidden bg-slate-800 border-2 border-cyan-500/50 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+          <h3 id="filterReviewTitle" class="text-lg font-bold text-white"></h3>
+          <button type="button" id="closeFilterReviewBtn" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-white font-semibold">ക്ലോസ് ചെയ്യുക ✕</button>
+        </div>
+        <div id="filterReviewList" class="space-y-4 max-h-[60vh] overflow-y-auto custom-scroll pr-1"></div>
+      </div>
+
+      <!-- Permanent Solutions Area at bottom -->
+      <div id="pdfExportWrapper" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <div class="border-b border-slate-700 pb-4 mb-6">
+          <h3 class="text-xl font-bold text-cyan-400">സാമ്പത്തിക ശാസ്ത്രം (സെറ്റ് 1) - ഉത്തര സൂചിക</h3>
+          <p class="text-xs text-slate-400 mt-1" id="pdfReportCandidateSubheader">വിദ്യാർത്ഥി വിവരങ്ങൾ</p>
+        </div>
+        <div id="solutionsContainer" class="space-y-6"></div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col max-h-[85vh]">
+        <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-bold text-cyan-400">ലൈവ് റാങ്ക് ലിസ്റ്റ് (Google Sheet)</h3>
+            <p class="text-xs text-slate-400">ആദ്യ ശ്രമത്തിലെ സ്കോർ അടിസ്ഥാനമാക്കി ക്രമീകരിച്ചത്</p>
+          </div>
+          <button type="button" onclick="closeLeaderboard()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+        </div>
+        <div id="leaderboardLoading" class="py-10 text-center text-sm text-slate-400">ഗൂഗിൾ ഷീറ്റിൽ നിന്നും റാങ്ക് ലിസ്റ്റ് ശേഖരിക്കുന്നു...</div>
+        <div class="flex-1 overflow-y-auto custom-scroll pr-1 hidden" id="leaderboardTableWrapper">
+          <table class="w-full text-left text-sm">
+            <thead class="text-xs uppercase bg-slate-900/80 text-slate-400 sticky top-0">
+              <tr>
+                <th class="py-2.5 px-3">റാങ്ക്</th>
+                <th class="py-2.5 px-3">പേര്</th>
+                <th class="py-2.5 px-3">മൊബൈൽ</th>
+                <th class="py-2.5 px-3 text-right">മാർക്ക്</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody" class="divide-y divide-slate-700"></tbody>
+          </table>
+        </div>
+        <div class="pt-4 border-t border-slate-700 mt-4 text-center">
+          <button type="button" onclick="closeLeaderboard()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-xs font-semibold text-white">ക്ലോസ് ചെയ്യുക</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
+        <div class="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto text-2xl">🌟</div>
+        <h3 class="text-lg font-bold text-white">നിങ്ങൾക്ക് ഈ ക്വിസ് ഇഷ്ടമായോ?</h3>
+        <p class="text-xs text-slate-400">പ്രതികരണം നൽകിയ ശേഷം ഔദ്യോഗിക നോട്ട്സ് PDF ഡൗൺലോഡ് ചെയ്യാം.</p>
+        <div class="flex items-center justify-center space-x-4 pt-2">
+          <button type="button" onclick="recordFeedbackAndOpenDownload('Like')" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition">👍 Like</button>
+          <button type="button" onclick="recordFeedbackAndOpenDownload('Dislike')" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-sm transition">👎 Dislike</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-center py-3 text-[11px] text-slate-500 border-t border-slate-800">
+    സാമ്പത്തിക ശാസ്ത്രം (Plus One SCERT Economics) - സെറ്റ് 1 | PSC Model Exam
+  </footer>
+
+  <script>
+    let GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbztE9bExjlH5a9Y_O8pU9CzVZy5zl-wzycDISurGzxqwuWB71Nxquzpg00Ocf2QR9Zb/exec";
+    const QUIZ_SHEET_NAME = "Economics_Set1";
+    let ORIGINAL_PDF_URL = "https://docs.google.com/document/d/YOUR_GOOGLE_DOC_ID/export?format=pdf";
+    let examTitle = "സാമ്പത്തിക ശാസ്ത്രം - സെറ്റ് 1";
+
+    const questionsData = [
+      {
+        q: "ബ്രിട്ടീഷ് ഭരണകാലത്ത് ഇന്ത്യയിലെ ജനസംഖ്യയുടെ ഭൂരിഭാഗവും ആശ്രയിച്ചിരുന്ന ഉപജീവന മേഖല ഏതാണ്?",
+        options: ["കാർഷിക മേഖല", "സേവന മേഖല", "വ്യവസായ മേഖല", "വിദേശ വ്യാപാരം"],
+        ans: 0,
+        exp: "ബ്രിട്ടീഷ് ഭരണകാലത്ത് ഇന്ത്യയിലെ തൊഴിൽശക്തിയുടെ ഏകദേശം 70-75 ശതമാനവും കാർഷിക മേഖലയെയാണ് (Agriculture Sector) ഉപജീവനത്തിനായി ആശ്രയിച്ചിരുന്നത്."
+      },
+      {
+        q: "സ്വാതന്ത്ര്യാനന്തര ഇന്ത്യയിൽ കാർഷിക മേഖലയിലെ ഉൽപാദന വർദ്ധനവിനായി നടപ്പിലാക്കിയ ഹരിതവിപ്ലവം (Green Revolution) പ്രധാനമായും ലക്ഷ്യമിട്ട ഭക്ഷ്യധാന്യങ്ങൾ ഏവ?",
+        options: ["പയർവർഗ്ഗങ്ങളും ചോളവും", "ഗോതമ്പും നെല്ലും", "ചായയും കാപ്പിയും", "കരിമ്പും എണ്ണക്കുരുക്കളും"],
+        ans: 1,
+        exp: "ഉയർന്ന വിളവ് തരുന്ന വിത്തിനങ്ങളും (HYV Seeds) രാസവളങ്ങളും ജലസേചനവും ഉപയോഗിച്ച് ഗോതമ്പ്, നെല്ല് എന്നിവയുടെ ഉൽപാദനത്തിലാണ് വിപ്ലവകരമായ വളർച്ച കൈവരിച്ചത്."
+      },
+      {
+        q: "സ്വാതന്ത്ര്യത്തിനു മുൻപുള്ള ഇന്ത്യൻ കാർഷിക മേഖലയെ സംബന്ധിച്ച താഴെ പറയുന്ന പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. സമീന്ദാരി സമ്പ്രദായം വഴി കർഷകർ കടുത്ത ചൂഷണത്തിന് ഇരയായി.\n2. ഭക്ഷ്യവിളകൾക്ക് പകരം ബ്രിട്ടീഷ് വ്യവസായങ്ങൾക്ക് ആവശ്യമായ വാണിജ്യവിളകൾ നിർബന്ധിതമായി കൃഷി ചെയ്യിപ്പിച്ചു.\n3. കാർഷിക മേഖലയിൽ ആവശ്യത്തിന് ജലസേചന സൗകര്യങ്ങളും മികച്ച സാങ്കേതികവിദ്യയും ലഭ്യമായിരുന്നു.",
+        options: ["1, 3 ശരിയാണ്", "1, 2, 3 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2 ശരിയാണ്"],
+        ans: 3,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. കൊളോണിയൽ കാലത്ത് ജലസേചന സൗകര്യങ്ങളോ പുതിയ സാങ്കേതികവിദ്യയോ കർഷകർക്ക് ലഭിച്ചിരുന്നില്ല; മൺസൂണിനെ മാത്രമാണ് ആശ്രയിച്ചിരുന്നത്. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "1956-ലെ രണ്ടാം വ്യവസായ നയപ്രമേയം (IPR 1956) പ്രകാരം വ്യവസായങ്ങളെ എത്ര വിഭാഗങ്ങളായാണ് തരംതിരിച്ചത്?",
+        options: ["നാല്", "അഞ്ച്", "മൂന്ന്", "രണ്ട്"],
+        ans: 2,
+        exp: "പൂർണ്ണമായും സർക്കാരിന്റെ ഉടമസ്ഥതയിലുള്ളവ (ഷെഡ്യൂൾ A), സ്വകാര്യമേഖലയ്ക്ക് സർക്കാരിനൊപ്പം പങ്കാളിത്തമുള്ളവ (ഷെഡ്യൂൾ B), പൂർണ്ണമായും സ്വകാര്യ മേഖലയ്ക്കുള്ളവ (ഷെഡ്യൂൾ C) എന്നിങ്ങനെ മൂന്നായി തരംതിരിച്ചു."
+      },
+      {
+        q: "ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥയിലെ ഘടനാപരമായ മാറ്റങ്ങളെക്കുറിച്ചുള്ള പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. സ്വാതന്ത്ര്യത്തിനു ശേഷം ജി.ഡി.പിയിൽ കാർഷിക മേഖലയുടെ വിഹിതം ക്രമേണ കുറഞ്ഞുവന്നു.\n2. ജി.ഡി.പിയിൽ ഏറ്റവും വലിയ വിഹിതം സംഭാവന ചെയ്യുന്ന മേഖലയായി സേവന മേഖല മാറി.\n3. കൃഷിയിലുള്ള ആശ്രിതത്വം പൂർണ്ണമായി അവസാനിക്കുകയും കാർഷിക തൊഴിൽശക്തി 5 ശതമാനമായി താഴുകയും ചെയ്തു.",
+        options: ["1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 ശരിയാണ്", "1, 3 ശരിയാണ്"],
+        ans: 0,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. കാർഷിക വരുമാന വിഹിതം കുറഞ്ഞെങ്കിലും ഇന്നും രാജ്യത്തെ തൊഴിൽശക്തിയുടെ പകുതിയോളം പേർ ഉപജീവനത്തിനായി കൃഷിയെ ആശ്രയിക്കുന്നു. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "1991-ലെ പുതിയ സാമ്പത്തിക നയത്തിന്റെ (NEP) ഭാഗമായി ആരംഭിച്ച പ്രധാന പരിഷ്കാരങ്ങൾ ഏത് പേരിൽ അറിയപ്പെടുന്നു?",
+        options: ["ഇറക്കുമതി ബദൽ നയം", "വികേന്ദ്രീകൃത ആസൂത്രണം", "സ്വയംപര്യാപ്തത നയം", "എൽ.പി.ജി പരിഷ്കാരങ്ങൾ"],
+        ans: 3,
+        exp: "ഉദാരവൽക്കരണം (Liberalisation), സ്വകാര്യവൽക്കരണം (Privatisation), ആഗോളവൽക്കരണം (Globalisation) എന്നിവയാണ് 1991-ലെ പുതിയ സാമ്പത്തിക നയത്തിന്റെ പ്രധാന തൂണുകൾ."
+      },
+      {
+        q: "സാമ്പത്തിക ശാസ്ത്രത്തിലെ രണ്ട് വേരിയബിളുകൾ തമ്മിലുള്ള പരസ്പര ബന്ധത്തിന്റെ തീവ്രത അളക്കാൻ ഉപയോഗിക്കുന്ന സ്റ്റാറ്റിസ്റ്റിക്കൽ അളവ് ഏതാണ്?",
+        options: ["കോറിലേഷൻ", "സ്റ്റാൻഡേർഡ് ഡീവിയേഷൻ", "മീഡിയൻ", "മീൻ ഡീവിയേഷൻ"],
+        ans: 0,
+        exp: "രണ്ട് ചരങ്ങൾ തമ്മിലുള്ള ബന്ധത്തെയും അതിന്റെ ദിശയെയും അളക്കാൻ കാൾ പിയേഴ്സൺ വികസിപ്പിച്ച രീതിയാണ് സഹബന്ധം അഥവാ കോറിലേഷൻ (Correlation)."
+      },
+      {
+        q: "ഗ്രാമീണ കടബാധ്യതയും വായ്പാ സംവിധാനങ്ങളെയും കുറിച്ചുള്ള പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. ഗ്രാമീണ ബാങ്കുകളും സഹകരണ സംഘങ്ങളും സ്ഥാപിതമായതോടെ അനൗപചാരിക പണമിടപാടുകാരുടെ ചൂഷണം ഒരു പരിധിവരെ തടയാനായി.\n2. നബാർഡ് (NABARD) ഗ്രാമീണ വികസനത്തിനായുള്ള അപെക്സ് ബാങ്കായി പ്രവർത്തിക്കുന്നു.\n3. ഗ്രാമീണ ബാങ്കുകൾ കർഷകർക്ക് വായ്പ നൽകുന്നത് പൂർണ്ണമായും നിരോധിച്ചിരിക്കുന്നു.",
+        options: ["1, 3 ശരിയാണ്", "1, 2 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 ശരിയാണ്"],
+        ans: 1,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. ഗ്രാമീണ ബാങ്കുകളുടെ പ്രധാന ധർമ്മം തന്നെ കർഷകർക്കും ചെറുകിട സംരംഭകർക്കും വായ്പ ലഭ്യമാക്കുക എന്നതാണ്. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "ഇന്ത്യയിൽ ഗ്രാമീണ ബാങ്കിംഗ് സംവിധാനത്തിൽ പാവപ്പെട്ട സ്ത്രീകൾക്കിടയിൽ ചെറുകിട വായ്പകൾ ഉറപ്പാക്കുന്ന കൂട്ടായ്മകൾ ഏത് പേരിൽ അറിയപ്പെടുന്നു?",
+        options: ["സംയുക്ത ബാധ്യത ഗ്രൂപ്പുകൾ", "സ്വയംസഹായ സംഘങ്ങൾ", "വാണിജ്യ ക്ലബ്ബുകൾ", "ഗ്രാമീണ ബാങ്കുകൾ"],
+        ans: 1,
+        exp: "ഗ്രാമീണ മേഖലയിലെ സൂക്ഷ്മവായ്പകൾക്കായി പരസ്പര സഹായത്തോടെ പ്രവർത്തിക്കുന്ന കൂട്ടായ്മകളാണ് സ്വയംസഹായ സംഘങ്ങൾ (Self Help Groups - SHGs)."
+      },
+      {
+        q: "സ്റ്റാറ്റിസ്റ്റിക്സിലെ കേന്ദ്ര പ്രവണതാ അളവുകളെ (Measures of Central Tendency) സംബന്ധിച്ച പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. എല്ലാ നിരീക്ഷണങ്ങളെയും തുല്യമായി പരിഗണിക്കുന്ന ഏറ്റവും ജനപ്രിയമായ അളവാണ് അരിത്മെറ്റിക് മീൻ.\n2. വിവരങ്ങളെ ആരോഹണക്രമത്തിൽ ക്രമീകരിച്ചാൽ മധ്യത്തിൽ വരുന്ന മൂല്യമാണ് മീഡിയൻ.\n3. അതിരുകടന്ന വലിയ സംഖ്യകൾ മീൻ മൂല്യത്തെ ഒട്ടും സ്വാധീനിക്കാറില്ല.",
+        options: ["2, 3 ശരിയാണ്", "1, 3 ശരിയാണ്", "1, 2 ശരിയാണ്", "1 മാത്രം ശരിയാണ്"],
+        ans: 2,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. അതിരുകടന്ന ഉയർന്ന മൂല്യങ്ങൾ (Extreme values) അരിത്മെറ്റിക് മീനിനെ ശക്തമായി സ്വാധീനിക്കാറുണ്ട്. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "ഒരു വിവരശേഖരണത്തിൽ ഏറ്റവും കൂടുതൽ തവണ ആവർത്തിച്ചു വരുന്ന സംഖ്യ അഥവാ മൂല്യം ഏതാണ്?",
+        options: ["വിസ്തൃതി", "മാധ്യം", "ബഹുലകം", "മധ്യകം"],
+        ans: 2,
+        exp: "ഡാറ്റാ സെറ്റിൽ ഏറ്റവും ഉയർന്ന ഫ്രീക്വൻസിയുള്ള (കൂടുതൽ തവണ ആവർത്തിക്കുന്ന) മൂല്യമാണ് ബഹുലകം അഥവാ മോഡ് (Mode)."
+      },
+      {
+        q: "ഇന്ത്യയിലെ ഔദ്യോഗിക ദാരിദ്ര്യരേഖ നിശ്ചയിക്കുന്നതിൽ നഗര-ഗ്രാമ നിവാസികൾക്ക് നിർദ്ദേശിക്കപ്പെട്ട പ്രതിദിന കുറഞ്ഞ കലോറി ഉപഭോഗം എത്രയാണ്?",
+        options: ["ഇരുമേഖലകളിലും 2000 കലോറി", "ഗ്രാമങ്ങളിൽ 2500 കലോറിയും നഗരങ്ങളിൽ 2200 കലോറിയും", "ഗ്രാമങ്ങളിൽ 2100 കലോറിയും നഗരങ്ങളിൽ 2400 കലോറിയും", "ഗ്രാമങ്ങളിൽ 2400 കലോറിയും നഗരങ്ങളിൽ 2100 കലോറിയും"],
+        ans: 3,
+        exp: "ഗ്രാമീണ മേഖലയിൽ കഠിനമായ ശാരീരിക അധ്വാനം കൂടുതൽ ആവശ്യമുള്ളതിനാൽ പ്രതിദിനം 2400 കലോറിയും നഗരങ്ങളിൽ 2100 കലോറിയുമാണ് നിശ്ചയിച്ചിട്ടുള്ളത്."
+      },
+      {
+        q: "ഇന്ത്യയിലെ തൊഴിലില്ലായ്മയുടെ സവിശേഷതകളെക്കുറിച്ചുള്ള പ്രസ്താവനകളിൽ ശരിയായവ ഏവ?\n1. കൂടുതൽ തൊഴിലാളികൾ കാർഷിക രംഗത്ത് ആവശ്യത്തിലധികം പണിയെടുക്കുന്ന അവസ്ഥയാണ് പ്രച്ഛന്ന തൊഴിലില്ലായ്മ.\n2. കാർഷിക മേഖലയിൽ വർഷത്തിലെ ചില മാസങ്ങളിൽ മാത്രം പണിയില്ലാതിരിക്കുന്ന അവസ്ഥയാണ് സീസണൽ തൊഴിലില്ലായ്മ.\n3. വിദ്യാസമ്പന്നരായ യുവാക്കൾക്കിടയിൽ ഇന്ന് ഓപ്പൺ തൊഴിലില്ലായ്മ രൂക്ഷമായി കണ്ടുവരുന്നു.",
+        options: ["1, 2 ശരിയാണ്", "1, 3 ശരിയാണ്", "2, 3 ശരിയാണ്", "1, 2, 3 ശരിയാണ്"],
+        ans: 3,
+        exp: "പ്രച്ഛന്ന തൊഴിലില്ലായ്മ (Disguised unemployment), സീസണൽ തൊഴിലില്ലായ്മ, അഭ്യസ്തവിദ്യരുടെ തൊഴിലില്ലായ്മ എന്നിവ സംബന്ധിച്ച മൂന്ന് പ്രസ്താവനകളും പൂർണ്ണമായും ശരിയാണ്."
+      },
+      {
+        q: "മനുഷ്യവിഭവശേഷി വികസനത്തിന് (Human Capital Formation) ഏറ്റവും കൂടുതൽ മുതൽമുടക്ക് ആവശ്യമുള്ള രണ്ട് അടിസ്ഥാന മേഖലകൾ ഏവ?",
+        options: ["വിദ്യാഭ്യാസവും ആരോഗ്യവും", "കൃഷിയും വ്യവസായവും", "ബാങ്കിംഗും വിദേശ വ്യാപാരവും", "ഗതാഗതവും വിനോദസഞ്ചാരവും"],
+        ans: 0,
+        exp: "വിദ്യാഭ്യാസത്തിലും ആരോഗ്യപരിപാലനത്തിലും നടത്തുന്ന നിക്ഷേപമാണ് ജനങ്ങളുടെ കാര്യക്ഷമതയും നൈപുണ്യവും വർദ്ധിപ്പിച്ച് മനുഷ്യ മൂലധനമാക്കി മാറ്റുന്നത്."
+      },
+      {
+        q: "ബ്രിട്ടീഷ് ഭരണകാലത്തെ ഇന്ത്യൻ സമ്പദ്‌വ്യവസ്ഥയെക്കുറിച്ചുള്ള താഴെ പറയുന്ന പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. ഇന്ത്യയിലെ പാരമ്പര്യ കരകൗശല-നെയ്ത്തു വ്യവസായങ്ങൾ ബ്രിട്ടീഷ് ഇറക്കുമതി നയങ്ങളാൽ തകർക്കപ്പെട്ടു.\n2. ഇന്ത്യയിൽ നിർമ്മിച്ച ഉൽപന്നങ്ങൾക്ക് ബ്രിട്ടനിലേക്ക് കയറ്റി അയക്കാൻ യാതൊരു നികുതിയും ഏർപ്പെടുത്തിയിരുന്നില്ല.\n3. ജനങ്ങളുടെ ആയുർദൈർഘ്യവും സാക്ഷരതാ നിരക്കും ബ്രിട്ടീഷ് ഭരണകാലത്ത് വളരെ താഴ്ന്ന നിലയിലായിരുന്നു.",
+        options: ["2 മാത്രം തെറ്റാണ്", "1 മാത്രം തെറ്റാണ്", "1, 3 തെറ്റാണ്", "3 മാത്രം തെറ്റാണ്"],
+        ans: 0,
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. ഇന്ത്യൻ ഉൽപന്നങ്ങൾക്ക് ബ്രിട്ടനിൽ കടുത്ത ഇറക്കുമതി നികുതി ചുമത്തി വിപണി തകർക്കുകയാണുണ്ടായത്. 1, 3 ശരിയാണ്."
+      },
+      {
+        q: "സ്വാതന്ത്ര്യലബ്ധിക്ക് ശേഷം വ്യവസായങ്ങൾക്ക് അനുമതി നൽകാൻ ഏർപ്പെടുത്തിയ കർശനമായ നിയന്ത്രണ സംവിധാനം ഏത് പേരിൽ അറിയപ്പെടുന്നു?",
+        options: ["പൊതുമേഖലാ കുത്തക", "ലൈസൻസ് രാജ്", "കോട്ട സമ്പ്രദായം", "ഇറക്കുമതി ചുങ്കം"],
+        ans: 1,
+        exp: "പുതിയ വ്യവസായങ്ങൾ തുടങ്ങുന്നതിനും വികസിപ്പിക്കുന്നതിനും സർക്കാരിന്റെ മുൻകൂർ ലൈസൻസ് നിർബന്ധമാക്കിയ രീതിയാണ് ലൈസൻസ് പെർമിറ്റ് രാജ് (License Raj)."
+      },
+      {
+        q: "ഇന്ത്യയിൽ ഏറ്റവും സമഗ്രമായി തൊഴിൽ, തൊഴിലില്ലായ്മ സംബന്ധിച്ച സ്ഥിതിവിവരക്കണക്കുകൾ ശേഖരിക്കുന്ന ഔദ്യോഗിക ഏജൻസി ഏതാണ്?",
+        options: ["ആർ.ബി.ഐ", "ധനകാര്യ മന്ത്രാലയം", "ദേശീയ സാമ്പിൾ സർവ്വേ ഓഫീസ്", "ലേബർ ബ്യൂറോ"],
+        ans: 2,
+        exp: "നാഷണൽ സ്റ്റാറ്റിസ്റ്റിക്കൽ ഓഫീസിന്റെ (NSO) കീഴിലുള്ള നാഷണൽ സാമ്പിൾ സർവ്വേയാണ് (NSSO) ഇന്ത്യയിൽ തൊഴിൽ സർവ്വേകൾ നടത്തുന്നത്."
+      },
+      {
+        q: "1991-ലെ പുതിയ സാമ്പത്തിക നയത്തിലെ സ്വകാര്യവൽക്കരണത്തെക്കുറിച്ചുള്ള പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. നഷ്ടത്തിലായ പൊതുമേഖലാ സ്ഥാപനങ്ങളുടെ ഓഹരികൾ വിറ്റഴിക്കുന്നതിനെ ഡിസ്‌ഇൻവെസ്റ്റ്‌മെന്റ് എന്ന് വിളിക്കുന്നു.\n2. എല്ലാ പൊതുമേഖലാ സ്ഥാപനങ്ങളും സർക്കാർ പൂർണ്ണമായും അടച്ചുപൂട്ടി സ്വകാര്യ കുത്തകകൾക്ക് സൗജന്യമായി കൈമാറി.\n3. വിദേശ നിക്ഷേപം ആകർഷിക്കുന്നതിനായി നിയന്ത്രണങ്ങളിൽ വലിയ ഇളവുകൾ അനുവദിച്ചു.",
+        options: ["3 മാത്രം തെറ്റാണ്", "2 മാത്രം തെറ്റാണ്", "എല്ലാം തെറ്റാണ്", "1, 3 തെറ്റാണ്"],
+        ans: 1,
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. സ്ഥാപനങ്ങൾ സൗജന്യമായി വിട്ടുകൊടുക്കുകയല്ല, മറിച്ച് ഓഹരികൾ ഘട്ടംഘട്ടമായി വിറ്റഴിക്കുകയാണ് ചെയ്തത് (മഹാരത്ന, നവരത്ന കമ്പനികൾ ഇന്നും സർക്കാരിനൊപ്പമുണ്ട്). 1, 3 ശരിയാണ്."
+      },
+      {
+        q: "സ്ഥിതിവിവരക്കണക്കുകളിൽ രണ്ട് വേരിയബിളുകൾ തമ്മിലുള്ള രേഖീയ ബന്ധം ഗ്രാഫിക്കലായി ചിത്രീകരിക്കുന്ന രേഖാചിത്രം ഏത്?",
+        options: ["ഹിസ്റ്റോഗ്രാം", "ഫ്രീക്വൻസി പോളിഗൺ", "പൈ ഡയഗ്രം", "സ്കാറ്റർ ഡയഗ്രം"],
+        ans: 3,
+        exp: "രണ്ട് ചരങ്ങൾ തമ്മിലുള്ള സഹബന്ധത്തിന്റെ വ്യാപ്തിയും ദിശയും ഡോട്ട് രൂപത്തിൽ കാണിക്കുന്ന ഡയഗ്രമാണ് സ്കാറ്റർ ഡയഗ്രം (Scatter Diagram)."
+      },
+      {
+        q: "സാമൂഹിക അടിസ്ഥാന സൗകര്യങ്ങളെയും സാമ്പത്തിക വികസനത്തെയും സംബന്ധിച്ച പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. ഊർജ്ജം, ഗതാഗതം, വാർത്താവിനിമയം എന്നിവ സാമ്പത്തിക അടിസ്ഥാന സൗകര്യങ്ങളിൽ ഉൾപ്പെടുന്നു.\n2. വിദ്യാഭ്യാസവും ആരോഗ്യവും സാമൂഹിക അടിസ്ഥാന സൗകര്യങ്ങളുടെ പ്രധാന ഘടകങ്ങളാണ്.\n3. അടിസ്ഥാന സൗകര്യ വികസനം രാജ്യത്തിന്റെ ജി.ഡി.പി വളർച്ചയ്ക്ക് യാതൊരു സംഭാവനയും നൽകുന്നില്ല.",
+        options: ["1, 3 തെറ്റാണ്", "എല്ലാം തെറ്റാണ്", "3 മാത്രം തെറ്റാണ്", "1, 2 തെറ്റാണ്"],
+        ans: 2,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. മികച്ച അടിസ്ഥാന സൗകര്യങ്ങൾ ഉൽപ്പാദനക്ഷമത കൂട്ടി ജി.ഡി.പി വളർച്ച വേഗത്തിലാക്കുന്നു. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "ഭാവി തലമുറയുടെ ആവശ്യങ്ങളെ ബലികഴിക്കാതെ ഇന്നത്തെ ആവശ്യങ്ങൾ നിറവേറ്റുന്ന സാമ്പത്തിക വികസന രീതി ഏത് പേരിൽ അറിയപ്പെടുന്നു?",
+        options: ["സുസ്ഥിര വികസനം", "കേന്ദ്രീകൃത വികസനം", "ഉദാരവൽക്കൃത വികസനം", "ദ്രുതഗതിയിലുള്ള വ്യവസായവൽക്കരണം"],
+        ans: 0,
+        exp: "പ്രകൃതിവിഭവങ്ങളുടെ സംരക്ഷണവും പരിസ്ഥിതി സന്തുലനവും ഉറപ്പാക്കിക്കൊണ്ടുള്ള വികസനമാണ് സുസ്ഥിര വികസനം അഥവാ സസ്റ്റൈനബിൾ ഡെവലപ്‌മെന്റ് (Sustainable Development)."
+      },
+      {
+        q: "സുസ്ഥിര വികസനവും പരിസ്ഥിതിയും സംബന്ധിച്ച താഴെ പറയുന്ന പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. താപവൈദ്യുതി നിലയങ്ങളിൽ നിന്നും പുറന്തള്ളുന്ന വാതകങ്ങൾ അന്തരീക്ഷ മലിനീകരണത്തിനും ആഗോളതാപനത്തിനും കാരണമാകുന്നു.\n2. രാസവളങ്ങളുടെ അമിത ഉപയോഗം മണ്ണിന്റെ സ്വാഭാവിക ഫലഭൂയിഷ്ഠത വർദ്ധിപ്പിക്കുന്നു.\n3. സൗരോർജ്ജവും കാറ്റാടിയന്ത്രങ്ങളും പ്രകൃതിസൗഹൃദമായ പുനരുപയോഗ ഊർജ്ജ സ്രോതസ്സുകളാണ്.",
+        options: ["1, 3 തെറ്റാണ്", "2, 3 തെറ്റാണ്", "എല്ലാം തെറ്റാണ്", "2 മാത്രം തെറ്റാണ്"],
+        ans: 3,
+        exp: "രണ്ടാമത്തെ പ്രസ്താവന തെറ്റാണ്. രാസവളങ്ങളുടെയും കീടനാശിനികളുടെയും അമിത ഉപയോഗം മണ്ണിന്റെ ജീർണ്ണതയ്ക്കും ജലമലിനീകരണത്തിനുമാണ് കാരണമാകുന്നത്. 1, 3 ശരിയാണ്."
+      },
+      {
+        q: "ഇന്ത്യൻ വിദേശ വ്യാപാരത്തിൽ സ്വാതന്ത്ര്യാനന്തരം ആദ്യ ദശകങ്ങളിൽ പിന്തുടർന്ന വ്യാപാര തന്ത്രം ഏതാണ്?",
+        options: ["തീരുവ രഹിത വ്യാപാരം", "ഇറക്കുമതി ബദൽ നയം", "കയറ്റുമതി പ്രോത്സാഹനം", "സ്വതന്ത്ര വ്യാപാരം"],
+        ans: 1,
+        exp: "വിദേശത്തുനിന്നും സാധനങ്ങൾ വാങ്ങുന്നത് ഒഴിവാക്കി അവ ആഭ്യന്തരമായി ഉൽപ്പാദിപ്പിക്കുന്ന നയമാണ് ഇറക്കുമതി ബദൽ നയം (Import Substitution)."
+      },
+      {
+        q: "സ്റ്റാറ്റിസ്റ്റിക്സിലെ പ്രൈമറി ഡാറ്റയും സെക്കൻഡറി ഡാറ്റയും സംബന്ധിച്ച പ്രസ്താവനകളിൽ തെറ്റായവ ഏവ?\n1. ഗവേഷകൻ നേരിട്ട് ഫീൽഡിൽ പോയി ശേഖരിക്കുന്ന വിവരങ്ങളാണ് പ്രൈമറി ഡാറ്റ.\n2. പ്രസിദ്ധീകരിച്ച പുസ്തകങ്ങളിൽ നിന്നും സർക്കാർ രേഖകളിൽ നിന്നും എടുക്കുന്ന വിവരങ്ങളാണ് സെക്കൻഡറി ഡാറ്റ.\n3. പ്രൈമറി ഡാറ്റ ശേഖരിക്കാൻ സെക്കൻഡറി ഡാറ്റയേക്കാൾ ചെലവും സമയവും വളരെ കുറവാണ്.",
+        options: ["എല്ലാം തെറ്റാണ്", "1, 2 തെറ്റാണ്", "1 മാത്രം തെറ്റാണ്", "3 മാത്രം തെറ്റാണ്"],
+        ans: 3,
+        exp: "മൂന്നാമത്തെ പ്രസ്താവന തെറ്റാണ്. നേരിട്ട് അന്വേഷിച്ച് വിവരങ്ങൾ ശേഖരിക്കുന്ന പ്രൈമറി ഡാറ്റയ്ക്ക് സെക്കൻഡറി ഡാറ്റയേക്കാൾ സമയവും ചെലവും വളരെ കൂടുതലാണ്. 1, 2 ശരിയാണ്."
+      },
+      {
+        q: "ഒരു വിവരശേഖരണത്തിലെ ഏറ്റവും വലിയ സംഖ്യയും ഏറ്റവും ചെറിയ സംഖ്യയും തമ്മിലുള്ള വ്യത്യാസം ഏത് പേരിൽ അറിയപ്പെടുന്നു?",
+        options: ["മീൻ ഡീവിയേഷൻ", "ചതുർത്ഥകം", "വിസ്തൃതി", "സ്റ്റാൻഡേർഡ് ഡീവിയേഷൻ"],
+        ans: 2,
+        exp: "വിസ്തൃതി അഥവാ റേഞ്ച് (Range) എന്നാൽ ഡാറ്റാ സെറ്റിലെ ഏറ്റവും ഉയർന്ന മൂല്യവും ഏറ്റവും കുറഞ്ഞ മൂല്യവും തമ്മിലുള്ള വ്യത്യാസമാണ് (Range = Highest - Lowest)."
+      }
+    ];
+
+    let currentUser = { name: "പഠിതാവ്", phone: "0000000000" };
+    let currentIndex = 0;
+    let userAnswers = new Array(questionsData.length).fill(null);
+    let wrongQuestionsList = [];
+    let currentFontSizeLevel = 1;
+
+    const fontSizes = [
+      { q: "text-sm sm:text-base" },
+      { text: "text-base sm:text-lg" },
+      { text: "text-lg sm:text-xl" },
+      { text: "text-xl sm:text-2xl" }
+    ];
+
+    let timeLeft = 25 * 60;
+    let timerInterval = null;
+
+    const motivationScreen = document.getElementById('motivationScreen');
+    const quizScreen = document.getElementById('quizScreen');
+    const resultScreen = document.getElementById('resultScreen');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const passedName = urlParams.get('name');
+      const passedPhone = urlParams.get('phone');
+      const passedTitle = urlParams.get('title');
+      const passedSheet = urlParams.get('sheetUrl');
+      const passedPdf = urlParams.get('pdfUrl');
+
+      if (passedName && passedName.trim() !== '') {
+        currentUser.name = decodeURIComponent(passedName).trim();
+      } else {
+        try {
+          const storedUser = localStorage.getItem('sk_user_name');
+          if (storedUser && storedUser.trim() !== '') {
+            currentUser.name = storedUser.trim();
+          }
+        } catch (e) {}
+      }
+
+      if (passedPhone) currentUser.phone = decodeURIComponent(passedPhone);
+      if (passedTitle) examTitle = decodeURIComponent(passedTitle);
+      if (passedSheet) GOOGLE_SHEET_WEBAPP_URL = decodeURIComponent(passedSheet);
+      if (passedPdf) ORIGINAL_PDF_URL = decodeURIComponent(passedPdf);
+
+      const displayElem = document.getElementById('displayUser');
+      if (displayElem) {
+        displayElem.innerText = (currentUser.phone && currentUser.phone !== "0000000000")
+          ? `${currentUser.name} (+91 ${currentUser.phone})`
+          : currentUser.name;
+      }
+
+      const motElem = document.getElementById('motivateName');
+      if (motElem) {
+        motElem.innerText = `ഹലോ, ${currentUser.name}! ✨`;
+      }
+    });
+
+    document.getElementById('fullscreenToggleBtn').onclick = () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error attempting full-screen: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) { document.exitFullscreen(); }
+      }
+    };
+
+    document.getElementById('fontDecrease').onclick = () => {
+      if (currentFontSizeLevel > 0) { currentFontSizeLevel--; updateFontSize(); }
+    };
+    document.getElementById('fontReset').onclick = () => {
+      currentFontSizeLevel = 1; updateFontSize();
+    };
+    document.getElementById('fontIncrease').onclick = () => {
+      if (currentFontSizeLevel < fontSizes.length - 1) { currentFontSizeLevel++; updateFontSize(); }
+    };
+
+    function updateFontSize() {
+      const qElem = document.getElementById('qText');
+      qElem.className = `${fontSizes[currentFontSizeLevel].q} font-semibold leading-relaxed text-slate-100 whitespace-pre-line transition-all duration-200`;
+    }
+
+    function startExamDirectly() {
+      motivationScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      quizScreen.classList.add('flex');
+      buildPalette();
+      renderQuestion(0);
+      startTimer();
+    }
+
+    function startTimer() {
+      const timerDisplay = document.getElementById('examTimer');
+      timerInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          alert('അനുവദിച്ച 25 മിനിറ്റ് സമയം പൂർത്തിയായിരിക്കുന്നു! പരീക്ഷ തനിയെ സബ്മിറ്റ് ചെയ്യുന്നു.');
+          finishExam();
+          return;
+        }
+
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const mStr = minutes < 10 ? '0' + minutes : minutes;
+        const sStr = seconds < 10 ? '0' + seconds : seconds;
+        timerDisplay.innerText = `${mStr}:${sStr}`;
+
+        if (timeLeft <= 180) {
+          timerDisplay.classList.remove('text-cyan-400');
+          timerDisplay.classList.add('text-rose-500', 'animate-pulse');
+        }
+      }, 1000);
+    }
+
+    function renderQuestion(index) {
+      const q = questionsData[index];
+      currentIndex = index;
+      document.getElementById('questionBadge').innerText = `ചോദ്യം ${index + 1} / ${questionsData.length}`;
+      document.getElementById('qText').innerText = `${index + 1}. ${q.q}`;
+
+      const optionsDiv = document.getElementById('optionsContainer');
+      optionsDiv.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      q.options.forEach((opt, idx) => {
+        const isSelected = userAnswers[index] === idx;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `w-full text-left p-3.5 rounded-xl border transition flex items-start space-x-3 ${
+          isSelected 
+            ? 'bg-cyan-500/20 border-cyan-500 text-cyan-200 ring-1 ring-cyan-500' 
+            : 'bg-slate-900/60 border-slate-700 hover:bg-slate-700/50 text-slate-200'
+        }`;
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold ${
+            isSelected ? 'bg-cyan-500 text-slate-950 font-black' : 'bg-slate-800 text-slate-400'
+          }">${letters[idx]}</span>
+          <span class="text-xs sm:text-sm leading-relaxed mt-0.5">${opt}</span>
+        `;
+        btn.onclick = () => {
+          userAnswers[index] = idx;
+          renderQuestion(index);
+        };
+        optionsDiv.appendChild(btn);
+      });
+
+      document.getElementById('prevBtn').disabled = (index === 0);
+      document.getElementById('nextBtn').innerText = (index === questionsData.length - 1) ? "സബ്മിറ്റ് ചെയ്യുക ✓" : "Next ›";
+      const answered = userAnswers.filter(a => a !== null).length;
+      document.getElementById('answeredCountTxt').innerText = `പൂർത്തിയാക്കിയത്: ${answered}/${questionsData.length}`;
+      updatePalette();
+    }
+
+    document.getElementById('reportQuestionBtn').addEventListener('click', () => {
+      handleReportQuestion(currentIndex + 1);
+    });
+
+    function handleReportQuestion(qNum) {
+      const reason = prompt(`ചോദ്യം ${qNum} ൽ എന്തെങ്കിലും തെറ്റുകൾ ഉണ്ടെങ്കിൽ ദയവായി താഴെ രേഖപ്പെടുത്തുക:`);
+      if (reason && reason.trim()) {
+        sendReportQuestionToGoogleSheet(qNum, reason.trim());
+        alert(`നന്ദി! ചോദ്യം ${qNum} ലെ സംശയം വിജയകരമായി റിപ്പോർട്ട് ചെയ്തിരിക്കുന്നു.`);
+      }
+    }
+
+    function buildPalette() {
+      const pal = document.getElementById('paletteContainer');
+      pal.innerHTML = '';
+      for (let i = 0; i < questionsData.length; i++) {
+        const b = document.createElement('button');
+        b.id = `pal-${i}`;
+        b.innerText = i + 1;
+        b.className = 'w-7 h-7 rounded text-[11px] font-bold flex items-center justify-center border transition';
+        b.onclick = () => { currentIndex = i; renderQuestion(currentIndex); };
+        pal.appendChild(b);
+      }
+      updatePalette();
+    }
+
+    function updatePalette() {
+      for (let i = 0; i < questionsData.length; i++) {
+        const b = document.getElementById(`pal-${i}`);
+        if (!b) continue;
+        if (i === currentIndex) {
+          b.className = 'w-7 h-7 rounded text-[11px] font-black border border-cyan-400 bg-cyan-400 text-slate-950';
+        } else if (userAnswers[i] !== null) {
+          b.className = 'w-7 h-7 rounded text-[11px] font-semibold border border-emerald-500/50 bg-emerald-950/60 text-emerald-400';
+        } else {
+          b.className = 'w-7 h-7 rounded text-[11px] font-medium border border-slate-700 bg-slate-900 text-slate-400';
+        }
+      }
+    }
+
+    document.getElementById('nextBtn').onclick = () => {
+      if (currentIndex < questionsData.length - 1) {
+        currentIndex++;
+        renderQuestion(currentIndex);
+      } else {
+        finishExam();
+      }
+    };
+
+    document.getElementById('prevBtn').onclick = () => {
+      if (currentIndex > 0) { currentIndex--; renderQuestion(currentIndex); }
+    };
+
+    document.getElementById('skipBtn').onclick = () => {
+      userAnswers[currentIndex] = null;
+      if (currentIndex < questionsData.length - 1) {
+        currentIndex++;
+        renderQuestion(currentIndex);
+      } else {
+        finishExam();
+      }
+    };
+
+    document.getElementById('finishMidBtn').onclick = () => {
+      const answered = userAnswers.filter(a => a !== null).length;
+      if (confirm(`നിങ്ങൾ 25-ൽ ${answered} ചോദ്യങ്ങൾക്ക് മാത്രമാണ് ഉത്തരം നൽകിയത്. ഇപ്പോൾ പരീക്ഷ അവസാനിപ്പിക്കണമെന്നുറപ്പാണോ?`)) {
+        finishExam();
+      }
+    };
+
+    function finishExam() {
+      if (timerInterval) clearInterval(timerInterval);
+
+      let correct = 0, wrong = 0, skipped = 0;
+      wrongQuestionsList = [];
+
+      for (let i = 0; i < questionsData.length; i++) {
+        if (userAnswers[i] === null) {
+          skipped++;
+        } else if (userAnswers[i] === questionsData[i].ans) {
+          correct++;
+        } else {
+          wrong++;
+          wrongQuestionsList.push(i + 1);
+        }
+      }
+
+      let netScore = (correct * 1.0) - (wrong * 0.33333333);
+      if (netScore < 0) netScore = 0;
+      const formattedScore = netScore.toFixed(2);
+      const scoreNum = parseFloat(formattedScore);
+
+      document.getElementById('finalScore').innerText = formattedScore;
+      document.getElementById('correctCount').innerText = correct;
+      document.getElementById('wrongCount').innerText = wrong;
+      document.getElementById('skipCount').innerText = skipped;
+      document.getElementById('resultCandidateInfo').innerText = `വിദ്യാർത്ഥി: ${currentUser.name} | മൊബൈൽ: ${currentUser.phone}`;
+      document.getElementById('pdfReportCandidateSubheader').innerText = `വിദ്യാർത്ഥി: ${currentUser.name} (${currentUser.phone}) | സ്കോർ: ${formattedScore} / 25 | ശരി: ${correct} | തെറ്റ്: ${wrong} | Skip: ${skipped}`;
+
+      const badge = document.getElementById('scoreMotivationBadge');
+      if (scoreNum >= 20) {
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-emerald-500/60 bg-emerald-950/40 text-emerald-300";
+        badge.innerHTML = `🌟 <strong>അത്യുജ്ജ്വല പ്രകടനം!</strong> സാമ്പത്തിക ശാസ്ത്രത്തിൽ നിങ്ങൾ മികച്ച അറിവ് തെളിയിച്ചിരിക്കുന്നു!`;
+      } else if (scoreNum >= 14) {
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-cyan-500/60 bg-cyan-950/40 text-cyan-300";
+        badge.innerHTML = `👍 <strong>മികച്ച പ്രകടനം!</strong> ചെറിയ ചില തെറ്റുകൾ തിരുത്തിയാൽ പൂർണ്ണ മാർക്കിലേക്ക് എത്താം.`;
+      } else if (scoreNum >= 7) {
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-amber-500/60 bg-amber-950/40 text-amber-300";
+        badge.innerHTML = `📖 <strong>നല്ലൊരു ശ്രമം!</strong> കൂടുതൽ വായനയും റിവിഷനും നടത്തി സ്കോർ ഉയർത്തുക.`;
+      } else {
+        badge.className = "max-w-xl mx-auto p-4 rounded-2xl border border-rose-500/60 bg-rose-950/40 text-rose-300";
+        badge.innerHTML = `💪 <strong>തളരരുത്!</strong> നോട്ട്സുകൾ കൂടുതൽ ആഴത്തിൽ പഠിച്ച് വീണ്ടും പരിശീലിക്കുക.`;
+      }
+
+      try {
+        if (currentUser && currentUser.phone && currentUser.phone !== "0000000000") {
+          const historyKey = `sk_history_${currentUser.phone}`;
+          let history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+          history.push({
+            title: examTitle,
+            score: formattedScore,
+            correct: correct,
+            wrong: wrong,
+            skipped: skipped,
+            date: new Date().toLocaleDateString('ml-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+          });
+          localStorage.setItem(historyKey, JSON.stringify(history));
+        }
+      } catch (err) {}
+
+      const downloadBtn = document.getElementById('downloadOriginalNoteBtn');
+      const lockNotice = document.getElementById('pdfLockNotice');
+
+      // 7 Mark Cut-off
+      if (scoreNum >= 7.0 && ORIGINAL_PDF_URL) {
+        downloadBtn.classList.remove('hidden');
+        lockNotice.classList.add('hidden');
+      } else {
+        downloadBtn.classList.add('hidden');
+        if (ORIGINAL_PDF_URL) lockNotice.classList.remove('hidden');
+      }
+
+      renderSolutions();
+      setupClickableReviewCards();
+
+      quizScreen.classList.add('hidden');
+      quizScreen.classList.remove('flex');
+      resultScreen.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      sendResultToGoogleSheet({
+        name: currentUser.name,
+        phone: currentUser.phone,
+        score: formattedScore,
+        correct: correct,
+        wrong: wrong,
+        skipped: skipped,
+        wrongQuestionsArray: wrongQuestionsList
+      });
+    }
+
+    function setupClickableReviewCards() {
+      document.getElementById('filterCorrectCard').onclick = () => renderFilteredQuestions('correct');
+      document.getElementById('filterWrongCard').onclick = () => renderFilteredQuestions('wrong');
+      document.getElementById('filterSkippedCard').onclick = () => renderFilteredQuestions('skipped');
+    }
+
+    function renderFilteredQuestions(type) {
+      const area = document.getElementById('filterReviewArea');
+      const title = document.getElementById('filterReviewTitle');
+      const list = document.getElementById('filterReviewList');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      list.innerHTML = '';
+      area.classList.remove('hidden');
+
+      if (type === 'correct') {
+        title.innerHTML = `✅ നിങ്ങൾ ശരിയാക്കിയ ചോദ്യങ്ങൾ`;
+        title.className = "text-lg font-bold text-emerald-400";
+      } else if (type === 'wrong') {
+        title.innerHTML = `❌ നിങ്ങൾക്ക് തെറ്റിയ ചോദ്യങ്ങൾ`;
+        title.className = "text-lg font-bold text-rose-400";
+      } else {
+        title.innerHTML = `⏭️ നിങ്ങൾ ഒഴിവാക്കിയ ചോദ്യങ്ങൾ`;
+        title.className = "text-lg font-bold text-slate-300";
+      }
+
+      let count = 0;
+      questionsData.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = uAns === q.ans;
+        const isWrong = uAns !== null && !isCorrect;
+        const isSkipped = uAns === null;
+
+        if ((type === 'correct' && isCorrect) || (type === 'wrong' && isWrong) || (type === 'skipped' && isSkipped)) {
+          count++;
+          const card = document.createElement('div');
+          card.className = "p-4 rounded-xl border border-slate-700 bg-slate-900/90 space-y-2 text-xs sm:text-sm";
+          
+          let optsMarkup = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">';
+          q.options.forEach((opt, oIdx) => {
+            let optClass = 'p-2 rounded-lg border flex items-center space-x-2 text-xs ';
+            if (oIdx === q.ans) {
+              optClass += 'border-emerald-500 bg-emerald-950/40 text-emerald-300 font-semibold';
+            } else if (oIdx === uAns && !isCorrect) {
+              optClass += 'border-rose-500 bg-rose-950/40 text-rose-300 line-through';
+            } else {
+              optClass += 'border-slate-800 text-slate-400';
+            }
+            optsMarkup += `<div class="${optClass}"><span>${letters[oIdx]})</span><span>${opt}</span></div>`;
+          });
+          optsMarkup += '</div>';
+
+          let statusBadge = isCorrect 
+            ? '<span class="text-emerald-400 font-bold">+1.00 Mark</span>' 
+            : isWrong 
+            ? '<span class="text-rose-400 font-bold">-0.33 Mark</span>' 
+            : '<span class="text-slate-400 font-bold">Skipped (0 Mark)</span>';
+
+          card.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-cyan-400">ചോദ്യം ${idx + 1}</span>
+              <div class="flex items-center space-x-2">
+                ${statusBadge}
+                <button onclick="handleReportQuestion(${idx + 1})" class="px-2 py-0.5 bg-rose-950 border border-rose-700 text-[10px] font-bold text-rose-300 rounded hover:bg-rose-900 transition">Report 🚩</button>
+              </div>
+            </div>
+            <p class="text-slate-200 font-medium">${q.q}</p>
+            ${optsMarkup}
+            <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
+              <span class="font-bold text-cyan-400">വിശദീകരണം:</span>
+              <span class="text-slate-300 ml-1">${q.exp}</span>
+            </div>
+          `;
+          list.appendChild(card);
+        }
+      });
+
+      if (count === 0) {
+        list.innerHTML = `<p class="py-4 text-center text-slate-400 text-xs">ഈ വിഭാഗത്തിൽ ചോദ്യങ്ങൾ ഒന്നുമില്ല.</p>`;
+      }
+
+      area.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('closeFilterReviewBtn').onclick = () => {
+      document.getElementById('filterReviewArea').classList.add('hidden');
+    };
+
+    function openFeedbackModal() {
+      document.getElementById('feedbackModal').classList.remove('hidden');
+    }
+
+    function recordFeedbackAndOpenDownload(feedbackVal) {
+      document.getElementById('feedbackModal').classList.add('hidden');
+      sendFeedbackToGoogleSheet(currentUser.phone, feedbackVal);
+      if (ORIGINAL_PDF_URL) {
+        window.open(ORIGINAL_PDF_URL, '_blank');
+      } else {
+        alert('ഔദ്യോഗിക PDF ലിങ്ക് ഉടൻ ലഭ്യമാക്കുന്നതാണ്.');
+      }
+    }
+
+    function sendResultToGoogleSheet(payload) {
+      const statusDiv = document.getElementById('sheetStatus');
+      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) {
+        statusDiv.innerText = "Google Sheet ലിങ്ക് നൽകിയിട്ടില്ല (മാർക്ക് മുകളിൽ ലഭ്യമാണ്).";
+        statusDiv.classList.remove('animate-pulse');
+        return;
+      }
+
+      payload.sheetName = QUIZ_SHEET_NAME;
+
+      fetch(GOOGLE_SHEET_WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        statusDiv.innerText = `✓ മാർക്ക് '${QUIZ_SHEET_NAME}' എന്ന ഷീറ്റ് ടാബിലേക്ക് രേഖപ്പെടുത്തി!`;
+        statusDiv.className = "text-xs text-cyan-400 mb-4";
+      })
+      .catch(() => {
+        statusDiv.innerText = "ഡാറ്റ സേവ് ചെയ്യുന്നതിൽ ചെറിയ തടസ്സം നേരിട്ടു.";
+        statusDiv.className = "text-xs text-rose-400 mb-4";
+      });
+    }
+
+    function sendReportQuestionToGoogleSheet(qNum, reason) {
+      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) return;
+      fetch(GOOGLE_SHEET_WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: "report_question",
+          sheetName: QUIZ_SHEET_NAME,
+          questionNumber: qNum,
+          reason: reason
+        })
+      });
+    }
+
+    function sendFeedbackToGoogleSheet(phone, feedback) {
+      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) return;
+      fetch(GOOGLE_SHEET_WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: "submit_feedback",
+          sheetName: QUIZ_SHEET_NAME,
+          phone: phone,
+          feedback: feedback
+        })
+      });
+    }
+
+    function renderSolutions() {
+      const cont = document.getElementById('solutionsContainer');
+      cont.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      questionsData.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = uAns === q.ans;
+        const isSkipped = uAns === null;
+
+        let badge = isSkipped 
+          ? '<span class="px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300">Skipped (മാർക്ക് മാറ്റമില്ല)</span>' 
+          : isCorrect 
+          ? '<span class="px-2 py-0.5 rounded text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">+1.00 Mark (ശരിയുത്തരം)</span>' 
+          : '<span class="px-2 py-0.5 rounded text-xs bg-rose-950 text-rose-400 border border-rose-800 font-bold">-0.33 Mark (തെറ്റ്)</span>';
+
+        let optsHtml = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">';
+        q.options.forEach((opt, oIdx) => {
+          let c = 'p-2.5 rounded-lg text-xs flex items-center space-x-2 border ';
+          if (oIdx === q.ans) c += 'border-emerald-500 bg-emerald-950/40 text-emerald-300 font-semibold';
+          else if (oIdx === uAns && !isCorrect) c += 'border-rose-500 bg-rose-950/40 text-rose-300 line-through';
+          else c += 'border-slate-800 text-slate-400';
+
+          optsHtml += `
+            <div class="${c}">
+              <span class="font-bold">${letters[oIdx]})</span>
+              <span>${opt}</span>
+              ${oIdx === q.ans ? '<span class="ml-auto text-emerald-400 font-bold">✓ ശരി</span>' : ''}
+              ${oIdx === uAns && !isCorrect ? '<span class="ml-auto text-rose-400 font-bold">✗ നിങ്ങൾ തിരഞ്ഞെടുത്തത്</span>' : ''}
+            </div>
+          `;
+        });
+        optsHtml += '</div>';
+
+        const item = document.createElement('div');
+        item.className = 'p-4 rounded-xl border border-slate-700 bg-slate-900/70 space-y-2';
+        item.innerHTML = `
+          <div class="flex justify-between items-start gap-2">
+            <span class="font-bold text-cyan-400 text-sm">ചോദ്യം ${idx + 1}</span>
+            <div class="flex items-center space-x-2">
+              <div>${badge}</div>
+              <button type="button" onclick="handleReportQuestion(${idx + 1})" class="px-2 py-0.5 bg-rose-950 border border-rose-700 text-[10px] font-bold text-rose-300 rounded hover:bg-rose-900 transition flex items-center space-x-1">
+                <span>Report 🚩</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-sm font-medium text-slate-200 whitespace-pre-line">${q.q}</p>
+          ${optsHtml}
+          <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-2 text-xs leading-relaxed">
+            <span class="font-bold text-cyan-400">വിശദീകരണം:</span>
+            <span class="text-slate-300 ml-1">${q.exp}</span>
+          </div>
+        `;
+        cont.appendChild(item);
+      });
+    }
+
+    document.getElementById('downloadPdfBtn').addEventListener('click', () => {
+      const element = document.getElementById('pdfExportWrapper');
+      const opt = {
+        margin:       [10, 10, 10, 10],
+        filename:     `${currentUser.name}_Economics_Set1_Scorecard.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#1e293b' },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      const btn = document.getElementById('downloadPdfBtn');
+      btn.innerText = 'PDF തയ്യാറാക്കുന്നു...';
+      btn.disabled = true;
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.innerHTML = `
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          <span>PDF ഡൗൺലോഡ് ആയി!</span>
+        `;
+        setTimeout(() => {
+          btn.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>സ്കോർകാർഡ് PDF</span>
+          `;
+          btn.disabled = false;
+        }, 3000);
+      });
+    });
+
+    // 🌟 ആദ്യ ശ്രമം മാത്രം ഫിൽട്ടർ ചെയ്യുകയും മാർക്ക് അനുസരിച്ച് സോർട്ട് ചെയ്യുകയും ചെയ്യുന്ന ലൈവ് റാങ്ക് ലിസ്റ്റ്
+    function fetchLiveLeaderboard() {
+      const modal = document.getElementById('leaderboardModal');
+      const loader = document.getElementById('leaderboardLoading');
+      const wrapper = document.getElementById('leaderboardTableWrapper');
+      const tbody = document.getElementById('leaderboardBody');
+
+      modal.classList.remove('hidden');
+      loader.classList.remove('hidden');
+      wrapper.classList.add('hidden');
+      tbody.innerHTML = '';
+
+      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_APPS_SCRIPT_WEBAPP_URL_HERE")) {
+        loader.innerText = "Google Apps Script URL സെറ്റ് ചെയ്തിട്ടില്ല.";
+        return;
+      }
+
+      fetch(`${GOOGLE_SHEET_WEBAPP_URL}?sheet=${encodeURIComponent(QUIZ_SHEET_NAME)}&_t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+          loader.classList.add('hidden');
+          wrapper.classList.remove('hidden');
+
+          const rawList = Array.isArray(data) ? data : (data.leaderboard || []);
+
+          if (!rawList || rawList.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-slate-500">ഇതുവരെ ആരും പരീക്ഷ പൂർത്തിയാക്കിയിട്ടില്ല.</td></tr>';
+            return;
+          }
+
+          const seenPhones = new Set();
+          const uniqueLeaderboard = [];
+
+          rawList.forEach((entry, index) => {
+            let cleanPhone = String(entry.phone || '').replace(/[^0-9]/g, '');
+            if (cleanPhone.length >= 10) {
+              cleanPhone = cleanPhone.slice(-10);
+            }
+
+            if (cleanPhone && cleanPhone !== "0000000000") {
+              if (!seenPhones.has(cleanPhone)) {
+                seenPhones.add(cleanPhone);
+                entry.originalIndex = index;
+                uniqueLeaderboard.push(entry);
+              }
+            } else {
+              entry.originalIndex = index;
+              uniqueLeaderboard.push(entry);
+            }
+          });
+
+          uniqueLeaderboard.sort((a, b) => {
+            const scoreDiff = parseFloat(b.score) - parseFloat(a.score);
+            if (scoreDiff !== 0) return scoreDiff;
+            return a.originalIndex - b.originalIndex;
+          });
+
+          uniqueLeaderboard.forEach((entry, idx) => {
+            let phoneStr = String(entry.phone || '').replace(/[^0-9]/g, '');
+            if (phoneStr.length >= 10) phoneStr = phoneStr.slice(-10);
+            
+            const masked = (phoneStr && phoneStr.length >= 5) 
+              ? phoneStr.substring(0, 5) + '*****' 
+              : '---';
+
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-slate-700/30 text-slate-300';
+            row.innerHTML = `
+              <td class="py-2.5 px-3 font-mono font-bold">${idx + 1}</td>
+              <td class="py-2.5 px-3 font-medium">${entry.name}</td>
+              <td class="py-2.5 px-3 font-mono text-xs text-slate-400">${masked}</td>
+              <td class="py-2.5 px-3 text-right font-mono font-bold text-cyan-400">${Number(entry.score).toFixed(2)}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        })
+        .catch(() => {
+          loader.innerText = "റാങ്ക് ലിസ്റ്റ് ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി അല്പം കഴിഞ്ഞ് ശ്രമിക്കുക.";
+        });
+    }
+
+    function closeLeaderboard() {
+      document.getElementById('leaderboardModal').classList.add('hidden');
+    }
+
+    function returnToHomeWithData() {
+      const homePortalUrl = "https://subhash-kumar00.github.io/PSC-EXAMS/";
+      const score = document.getElementById('finalScore').innerText;
+      const correct = document.getElementById('correctCount').innerText;
+      const wrong = document.getElementById('wrongCount').innerText;
+      const skipped = document.getElementById('skipCount').innerText;
+
+      window.location.href = `${homePortalUrl}?completed=true&title=${encodeURIComponent(examTitle)}&score=${score}&correct=${correct}&wrong=${wrong}&skipped=${skipped}`;
+    }
+  </script>
+</body>
+</html>
